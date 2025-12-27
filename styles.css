@@ -170,7 +170,7 @@ body {
     display: flex;
     align-items: center;
     gap: 1rem;
-    padding: 0.875rem 1rem;
+    padding: 0.875rem 0;
     border-radius: 8px;
     transition: background-color 0.2s ease;
 }
@@ -204,7 +204,7 @@ body {
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.3s ease, padding 0.3s ease;
-    padding-left: 4.5rem;
+    padding-left: 3.5rem;
 }
 
 .expandable-item.expanded .expand-content {
