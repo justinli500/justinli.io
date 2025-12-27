@@ -83,7 +83,7 @@ body {
     display: flex;
     align-items: center;
     gap: 1rem;
-    padding: 0.875rem 1rem;
+    padding: 0.875rem 0;
     margin-bottom: 0.5rem;
     border-radius: 8px;
     text-decoration: none;
@@ -108,7 +108,7 @@ body {
     height: 40px;
     border-radius: 8px;
     overflow: hidden;
-    background: var(--bg-secondary);
+    background: #ffffff;
     display: flex;
     align-items: center;
     justify-content: center;
