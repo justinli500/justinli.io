@@ -9,16 +9,43 @@
   <body>
     <main class="container">
       <header class="header">
-        <h1 class="title">hi im justin</h1>
-        <div class="profile-image">
-          <img src="assets/brat green.jpg" alt="Profile" />
+        <div class="header-left">
+          <div class="profile-image">
+            <img src="assets/brat green.jpg" alt="Profile" />
+          </div>
+          <h1 class="title">hi im justin</h1>
+        </div>
+        <div class="header-links">
+          <a href="mailto:your@email.com" aria-label="Email">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+          </a>
+          <a href="https://linkedin.com/in/yourprofile" target="_blank" aria-label="LinkedIn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+              <rect x="2" y="9" width="4" height="12"></rect>
+              <circle cx="4" cy="4" r="2"></circle>
+            </svg>
+          </a>
+          <a href="https://github.com/yourusername" target="_blank" aria-label="GitHub">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+            </svg>
+          </a>
+          <a href="https://twitter.com/yourusername" target="_blank" aria-label="Twitter/X">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+            </svg>
+          </a>
         </div>
       </header>
 
-      <div class="two-column">
-        <section class="section">
-          <h2 class="section-title">currently</h2>
-          <a href="#" class="experience-item highlight">
+      <section class="section">
+        <h2 class="section-title">currently</h2>
+        <div class="expandable-item">
+          <div class="experience-item" onclick="toggleExpand(this.parentElement)">
             <div class="company-logo">
               <img
                 src="assets/University/boston-university-seeklogo.png"
@@ -29,153 +56,190 @@
               <span class="role">CS + Statistics</span>
               <span class="company">Boston University</span>
             </div>
-          </a>
-        </section>
+            <button class="expand-btn" aria-label="Expand">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </button>
+          </div>
+          <div class="expand-content">
+            <ul>
+              <li>Studying Computer Science and Statistics</li>
+              <li>Expected graduation 2026</li>
+            </ul>
+          </div>
+        </div>
+      </section>
 
-        <section class="section">
-          <h2 class="section-title">previously</h2>
-          <div class="experience-item">
+      <section class="section">
+        <h2 class="section-title">previously</h2>
+        <div class="expandable-item">
+          <div class="experience-item" onclick="toggleExpand(this.parentElement)">
             <div class="company-logo">
-              <svg
-                viewBox="0 0 40 40"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
+              <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect width="40" height="40" rx="8" fill="#1a1a2e" />
-                <path
-                  d="M10 20l10-8v16l-10-8zm10-8l10 8-10 8V12z"
-                  fill="#6366f1"
-                />
+                <path d="M10 20l10-8v16l-10-8zm10-8l10 8-10 8V12z" fill="#6366f1" />
               </svg>
             </div>
             <div class="experience-info">
               <span class="role">Engineering</span>
               <span class="company">Company 1</span>
             </div>
+            <button class="expand-btn" aria-label="Expand">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </button>
           </div>
-          <div class="experience-item">
+          <div class="expand-content">
+            <ul>
+              <li>Built feature X that improved performance by 50%</li>
+              <li>Led development of internal tooling</li>
+              <li>Collaborated with cross-functional teams</li>
+            </ul>
+          </div>
+        </div>
+        <div class="expandable-item">
+          <div class="experience-item" onclick="toggleExpand(this.parentElement)">
             <div class="company-logo">
-              <svg
-                viewBox="0 0 40 40"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
+              <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect width="40" height="40" rx="8" fill="#0d3b66" />
-                <circle
-                  cx="20"
-                  cy="20"
-                  r="10"
-                  stroke="#3b82f6"
-                  stroke-width="3"
-                  fill="none"
-                />
+                <circle cx="20" cy="20" r="10" stroke="#3b82f6" stroke-width="3" fill="none" />
               </svg>
             </div>
             <div class="experience-info">
               <span class="role">Engineering</span>
               <span class="company">Company 2</span>
             </div>
+            <button class="expand-btn" aria-label="Expand">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </button>
           </div>
-          <div class="experience-item">
+          <div class="expand-content">
+            <ul>
+              <li>Developed RESTful APIs serving 1M+ requests/day</li>
+              <li>Implemented CI/CD pipelines</li>
+              <li>Mentored junior developers</li>
+            </ul>
+          </div>
+        </div>
+        <div class="expandable-item">
+          <div class="experience-item" onclick="toggleExpand(this.parentElement)">
             <div class="company-logo">
-              <svg
-                viewBox="0 0 40 40"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
+              <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <rect width="40" height="40" rx="8" fill="#003168" />
-                <path
-                  d="M10 12h8v16h-8v-16zm12 0h8v16h-8v-16z"
-                  fill="#ffd700"
-                />
+                <path d="M10 12h8v16h-8v-16zm12 0h8v16h-8v-16z" fill="#ffd700" />
               </svg>
             </div>
             <div class="experience-info">
               <span class="role">Engineering</span>
               <span class="company">Company 3</span>
             </div>
+            <button class="expand-btn" aria-label="Expand">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </button>
           </div>
-        </section>
-      </div>
+          <div class="expand-content">
+            <ul>
+              <li>Architected microservices infrastructure</li>
+              <li>Reduced system latency by 40%</li>
+              <li>Wrote technical documentation</li>
+            </ul>
+          </div>
+        </div>
+      </section>
 
       <section class="section">
         <h2 class="section-title">projects</h2>
-        <div class="projects-inline">
-          <a href="#" class="project-tag">project one</a>
-          <a href="#" class="project-tag">project two</a>
-          <a href="#" class="project-tag">project three</a>
-          <a href="#" class="project-tag">project four</a>
-          <a href="#" class="project-tag">project five</a>
+        <div class="expandable-list">
+          <div class="expandable-item">
+            <div class="project-item" onclick="toggleExpand(this.parentElement)">
+              <a href="#" class="project-link">project one</a>
+              <button class="expand-btn" aria-label="Expand">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </button>
+            </div>
+            <div class="expand-content">
+              <ul>
+                <li>Built with React and Node.js</li>
+                <li>10k+ monthly active users</li>
+              </ul>
+            </div>
+          </div>
+          <div class="expandable-item">
+            <div class="project-item" onclick="toggleExpand(this.parentElement)">
+              <a href="#" class="project-link">project two</a>
+              <button class="expand-btn" aria-label="Expand">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </button>
+            </div>
+            <div class="expand-content">
+              <ul>
+                <li>Machine learning pipeline</li>
+                <li>Python, TensorFlow, AWS</li>
+              </ul>
+            </div>
+          </div>
+          <div class="expandable-item">
+            <div class="project-item" onclick="toggleExpand(this.parentElement)">
+              <a href="#" class="project-link">project three</a>
+              <button class="expand-btn" aria-label="Expand">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </button>
+            </div>
+            <div class="expand-content">
+              <ul>
+                <li>Real-time data visualization</li>
+                <li>D3.js and WebSocket integration</li>
+              </ul>
+            </div>
+          </div>
+          <div class="expandable-item">
+            <div class="project-item" onclick="toggleExpand(this.parentElement)">
+              <a href="#" class="project-link">project four</a>
+              <button class="expand-btn" aria-label="Expand">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </button>
+            </div>
+            <div class="expand-content">
+              <ul>
+                <li>Mobile app for iOS and Android</li>
+                <li>React Native, Firebase</li>
+              </ul>
+            </div>
+          </div>
+          <div class="expandable-item">
+            <div class="project-item" onclick="toggleExpand(this.parentElement)">
+              <a href="#" class="project-link">project five</a>
+              <button class="expand-btn" aria-label="Expand">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </button>
+            </div>
+            <div class="expand-content">
+              <ul>
+                <li>CLI tool for developers</li>
+                <li>Go, open-sourced on GitHub</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </section>
 
       <footer class="footer">
-        <div class="social-links">
-          <a href="mailto:your@email.com" aria-label="Email">
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path
-                d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
-              ></path>
-              <polyline points="22,6 12,13 2,6"></polyline>
-            </svg>
-          </a>
-          <a
-            href="https://linkedin.com/in/yourprofile"
-            target="_blank"
-            aria-label="LinkedIn"
-          >
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path
-                d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
-              ></path>
-              <rect x="2" y="9" width="4" height="12"></rect>
-              <circle cx="4" cy="4" r="2"></circle>
-            </svg>
-          </a>
-          <a
-            href="https://github.com/yourusername"
-            target="_blank"
-            aria-label="GitHub"
-          >
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path
-                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
-              ></path>
-            </svg>
-          </a>
-          <a
-            href="https://twitter.com/yourusername"
-            target="_blank"
-            aria-label="Twitter/X"
-          >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-              <path
-                d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
-              />
-            </svg>
-          </a>
-        </div>
         <div class="language-toggle">
           <span class="lang active">EN</span>
           <span class="lang-divider">/</span>

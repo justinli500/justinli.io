@@ -45,23 +45,32 @@ body {
 .header {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
-    margin-bottom: 3rem;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 }
 
 .title {
-    font-size: 2rem;
+    font-size: 1.5rem;
     font-weight: 400;
     letter-spacing: -0.02em;
     color: var(--text-primary);
 }
 
 .profile-image {
-    width: 64px;
-    height: 64px;
-    border-radius: 8px;
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
     overflow: hidden;
     background: var(--bg-secondary);
+    flex-shrink: 0;
 }
 
 .profile-image img {
@@ -70,16 +79,30 @@ body {
     object-fit: cover;
 }
 
+.header-links {
+    display: flex;
+    gap: 1rem;
+}
+
+.header-links a {
+    color: var(--text-muted);
+    transition: color 0.2s ease;
+}
+
+.header-links a:hover {
+    color: var(--brat);
+}
+
 /* Sections */
 .section {
-    margin-bottom: 2rem;
+    margin-bottom: 2.5rem;
 }
 
 .section-title {
-    font-size: 0.875rem;
-    font-weight: 500;
-    color: #000000;
-    margin-bottom: 0.5rem;
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
 }
 
 /* Two Column Layout */
@@ -311,28 +334,10 @@ body {
 /* Footer */
 .footer {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
-    padding-top: 2rem;
-    border-top: 1px solid var(--border);
-}
-
-.social-links {
-    display: flex;
-    gap: 1.25rem;
-}
-
-.social-links a {
-    color: var(--text-muted);
-    transition: color 0.2s ease;
-    display: flex;
-    align-items: center;
     justify-content: center;
-}
-
-.social-links a:hover {
-    color: var(--brat);
+    align-items: center;
+    padding-top: 2rem;
+    margin-top: 1rem;
 }
 
 .language-toggle {
@@ -369,13 +374,19 @@ body {
         padding: 2rem 1.5rem;
     }
 
+    .header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
     .title {
-        font-size: 1.75rem;
+        font-size: 1.5rem;
     }
 
     .profile-image {
-        width: 56px;
-        height: 56px;
+        width: 36px;
+        height: 36px;
     }
 
     .two-column {
