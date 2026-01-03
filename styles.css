@@ -497,3 +497,50 @@ body {
     height: 100%;
     background: linear-gradient(135deg, var(--bg-secondary) 0%, #2a2a2a 100%);
 }
+
+/* ==================== */
+/* Bonsai Tree Styles   */
+/* ==================== */
+
+.bonsai-container {
+    position: absolute;
+    left: 0;
+    top: 120px;
+    z-index: 10;
+    pointer-events: none;
+    /* Transparent - site gradient shows through */
+}
+
+.bonsai-canvas {
+    font-family: 'Courier New', Monaco, Menlo, monospace;
+    font-size: 9px;
+    font-weight: bold;
+    line-height: 1.1;
+    white-space: pre;
+    user-select: none;
+    background: transparent;
+    margin: 0;
+    padding: 20px;
+}
+
+.bonsai-canvas .branch {
+    color: #6b7280;
+    text-shadow: 0 0 1px #6b7280;
+}
+
+.bonsai-canvas .leaf {
+    color: var(--accent-color);
+    text-shadow: 0 0 8px var(--glow-color);
+}
+
+.bonsai-canvas .pot {
+    color: #92400e;
+}
+
+/* Hide bonsai on smaller screens */
+@media (max-width: 1199px) {
+    .bonsai-container {
+        display: none;
+    }
+}
+

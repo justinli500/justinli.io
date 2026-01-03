@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git -C /Users/justinli/Desktop/University/Projects/justinli.io log --oneline)",
+      "Bash(git -C /Users/justinli/Desktop/University/Projects/justinli.io branch -a)",
+      "Bash(git -C /Users/justinli/Desktop/University/Projects/justinli.io show HEAD --stat)",
+      "Bash(cat:*)",
+      "Bash(wc:*)",
+      "Bash(git -C /Users/justinli/Desktop/University/Projects/justinli.io diff main..alternate-design --stat)",
+      "Bash(git -C /Users/justinli/Desktop/University/Projects/justinli.io log main..alternate-design --oneline)",
+      "WebSearch",
+      "WebFetch(domain:gitlab.com)",
+      "WebFetch(domain:raw.githubusercontent.com)"
+    ]
+  }
+}
