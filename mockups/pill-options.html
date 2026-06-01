@@ -1,0 +1,597 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pill style options — side by side</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --bg: #1a1a1a;
+        --bg2: #1e1e1e;
+        --text: #e8e8e8;
+        --muted: #888;
+        --border: rgba(255, 255, 255, 0.08);
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Inter", system-ui, -apple-system, sans-serif;
+        font-weight: 500;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        padding: 2.5rem 1.5rem 5rem;
+      }
+
+      /* ---- Header ---- */
+      .head {
+        max-width: 1120px;
+        margin: 0 auto 2rem;
+      }
+      .head h1 {
+        font-size: 22px;
+        font-weight: 600;
+        letter-spacing: -0.01em;
+      }
+      .head p {
+        color: var(--muted);
+        font-size: 13.5px;
+        margin-top: 0.5rem;
+        max-width: 64ch;
+      }
+      .head .hint {
+        margin-top: 0.85rem;
+        font-size: 12.5px;
+        color: #b9b9b9;
+        background: var(--bg2);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 0.7rem 0.9rem;
+        max-width: 64ch;
+      }
+      kbd {
+        font-family: inherit;
+        font-size: 11px;
+        background: rgba(255, 255, 255, 0.08);
+        border: 1px solid var(--border);
+        border-radius: 5px;
+        padding: 1px 6px;
+      }
+
+      /* ---- Grid of option cards ---- */
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+        gap: 1.1rem;
+        max-width: 1120px;
+        margin: 0 auto;
+      }
+      .card {
+        background: var(--bg2);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 1.15rem 1.2rem 1.35rem;
+      }
+      .card-top {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 0.5rem;
+      }
+      .card h3 {
+        font-size: 15px;
+        font-weight: 600;
+      }
+      .card h3 .num {
+        color: var(--muted);
+        font-weight: 500;
+        margin-right: 0.4rem;
+      }
+      .tag {
+        font-size: 10px;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        padding: 2px 7px;
+        border-radius: 9999px;
+        white-space: nowrap;
+      }
+      .tag.css {
+        color: #9fe6c4;
+        background: rgba(8, 80, 65, 0.35);
+        border: 1px solid rgba(159, 230, 196, 0.25);
+      }
+      .tag.gl {
+        color: #ffd27d;
+        background: rgba(80, 60, 10, 0.35);
+        border: 1px solid rgba(255, 210, 125, 0.25);
+      }
+      .desc {
+        color: var(--muted);
+        font-size: 12.5px;
+        line-height: 1.5;
+        margin: 0.45rem 0 1.05rem;
+      }
+
+      /* ---- Realistic context block (mini competition rows) ---- */
+      .ctx {
+        background: radial-gradient(120% 140% at 25% 0%, #262626 0%, #161616 70%);
+        border-radius: 10px;
+        padding: 0.85rem 0.95rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.55rem;
+      }
+      .row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        cursor: default;
+      }
+      .rt {
+        font-size: 12.5px;
+        color: #cfcfcf;
+      }
+
+      /* ---- Shared pill geometry ---- */
+      .pill {
+        position: relative;
+        isolation: isolate;
+        display: inline-flex;
+        align-items: center;
+        border-radius: 9999px;
+        padding: 2px 9px;
+        font-size: 11px;
+        font-weight: 500;
+        white-space: nowrap;
+      }
+      .pill-label {
+        position: relative;
+        z-index: 1;
+      }
+      .pill-flow {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+        border-radius: inherit;
+        pointer-events: none;
+      }
+      .pill-flow canvas {
+        display: block;
+        width: 100%;
+        height: 100%;
+        border-radius: inherit;
+      }
+
+      /* ============ 1 · LIQUID CHROME (WebGL) ============ */
+      .s-chrome .pill {
+        color: #ececec;
+        background: #121212;
+        overflow: hidden;
+      }
+      .s-chrome .pill-flow {
+        background: linear-gradient(180deg, #4a4a4a, #121212);
+        box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.18);
+      }
+      .s-chrome .pill-label {
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.7);
+      }
+      .s-chrome .pill::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        padding: 1.5px;
+        border-radius: inherit;
+        background: conic-gradient(from 180deg, blue, purple, red, purple, blue);
+        filter: grayscale(1);
+        -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+        -webkit-mask-composite: xor;
+        mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+        mask-composite: exclude;
+        transition: filter 0.3s ease;
+        pointer-events: none;
+      }
+      .s-chrome .row:hover .pill::before {
+        filter: grayscale(0);
+      }
+
+      /* ============ 2 · LIQUID GOLD (WebGL + tint) ============ */
+      .s-gold .pill {
+        color: #fdf3d8;
+        background: #1a1206;
+        overflow: hidden;
+      }
+      .s-gold .pill-flow {
+        background: linear-gradient(180deg, #6b5320, #1a1206);
+        box-shadow: inset 0 1px 1px rgba(255, 240, 200, 0.25);
+      }
+      .s-gold .pill-flow canvas {
+        filter: sepia(0.7) saturate(2.3) brightness(1.05) hue-rotate(-12deg);
+      }
+      .s-gold .pill-label {
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+      }
+      .s-gold .pill::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: 2;
+        padding: 1.5px;
+        border-radius: inherit;
+        background: conic-gradient(from 180deg, #7a5b1e, #e9c46a, #fff4d6, #e9c46a, #7a5b1e);
+        filter: brightness(0.7);
+        -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+        -webkit-mask-composite: xor;
+        mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+        mask-composite: exclude;
+        transition: filter 0.3s ease;
+        pointer-events: none;
+      }
+      .s-gold .row:hover .pill::before {
+        filter: brightness(1.3);
+      }
+
+      /* ============ 3 · GLASS / FROSTED (CSS) ============ */
+      .s-glass .pill {
+        color: #eaeaea;
+        background: rgba(255, 255, 255, 0.07);
+        -webkit-backdrop-filter: blur(8px);
+        backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18);
+        transition: background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+      }
+      .s-glass .row:hover .pill {
+        background: rgba(255, 255, 255, 0.15);
+        border-color: rgba(255, 255, 255, 0.32);
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0 0 12px rgba(255, 255, 255, 0.08);
+      }
+
+      /* ============ 4 · NEON GLOW (CSS) ============ */
+      .s-neon .pill {
+        color: #7df9ff;
+        background: #0c0c10;
+        border: 1px solid rgba(125, 249, 255, 0.5);
+        box-shadow: 0 0 8px rgba(125, 249, 255, 0.25), inset 0 0 6px rgba(125, 249, 255, 0.12);
+        text-shadow: 0 0 6px rgba(125, 249, 255, 0.55);
+        transition: box-shadow 0.25s ease, text-shadow 0.25s ease;
+      }
+      .s-neon .row:hover .pill {
+        box-shadow: 0 0 16px rgba(125, 249, 255, 0.6), inset 0 0 10px rgba(125, 249, 255, 0.28);
+        text-shadow: 0 0 10px rgba(125, 249, 255, 0.85);
+      }
+
+      /* ============ 5 · HOLOGRAPHIC SHIMMER (CSS, animated) ============ */
+      .s-shimmer .pill {
+        color: #fff;
+        background: linear-gradient(
+          110deg,
+          #1c1c1c 0%,
+          #6d8bff 24%,
+          #c08cff 38%,
+          #ff9ad1 50%,
+          #6d8bff 62%,
+          #1c1c1c 86%
+        );
+        background-size: 250% 100%;
+        animation: shimmer 4s linear infinite;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.55);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+      }
+      @keyframes shimmer {
+        to {
+          background-position: -250% 0;
+        }
+      }
+      .s-shimmer .row:hover .pill {
+        animation-duration: 1.3s;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .s-shimmer .pill {
+          animation: none;
+          background-position: 35% 0;
+        }
+      }
+
+      /* ============ 6 · OUTLINE / GHOST (CSS) ============ */
+      .s-ghost .pill {
+        color: #cfcfcf;
+        background: transparent;
+        border: 1px solid rgba(255, 255, 255, 0.22);
+        transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+      }
+      .s-ghost .row:hover .pill {
+        background: rgba(255, 255, 255, 0.06);
+        color: #fff;
+        border-color: rgba(255, 255, 255, 0.42);
+      }
+
+      /* ============ 7 · SOFT PASTEL (CSS — current baseline, color-coded) ============ */
+      .s-pastel .c-teal {
+        background: #e1f5ee;
+        color: #085041;
+      }
+      .s-pastel .c-blue {
+        background: #e6f1fb;
+        color: #185fa5;
+      }
+      .s-pastel .c-purple {
+        background: #eeedfe;
+        color: #3c3489;
+      }
+
+      .foot {
+        max-width: 1120px;
+        margin: 2.5rem auto 0;
+        color: var(--muted);
+        font-size: 12px;
+        line-height: 1.6;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="head">
+      <h1>Pill style options</h1>
+      <p>
+        Each card shows the same three competition rows with one style applied,
+        on your site's dark background. <strong>Hover a row</strong> to see its
+        effect.
+      </p>
+      <div class="hint">
+        Tell me the <strong>number(s)</strong> you want — e.g. “go with #1” or
+        mix them: “#1's chrome fill but #4's neon ring”. Tags:
+        <span class="tag gl" style="text-transform: none">WebGL · CDN</span> =
+        live shader + esm.sh dependency &nbsp;·&nbsp;
+        <span class="tag css" style="text-transform: none">Pure CSS</span> =
+        lightweight, offline, mobile-safe. Any option can also be
+        <em>color-coded per achievement</em> like #7 if you want.
+      </div>
+    </div>
+
+    <div class="grid">
+      <!-- 1 · Liquid Chrome -->
+      <div class="card s-chrome">
+        <div class="card-top">
+          <h3><span class="num">1</span>Liquid Chrome</h3>
+          <span class="tag gl">WebGL · CDN</span>
+        </div>
+        <p class="desc">
+          The current build, tuned silver. Real flowing metal; ring stays
+          brushed-grey until you hover, then floods rainbow.
+        </p>
+        <div class="ctx">
+          <div class="row">
+            <span class="rt">bu blockchain hackathon – vibe space</span>
+            <span class="pill"><span class="pill-flow"></span><span class="pill-label">1st place</span></span>
+          </div>
+          <div class="row">
+            <span class="rt">IMC Prosperity</span>
+            <span class="pill"><span class="pill-flow"></span><span class="pill-label">#777 of 18,803 (top 4%)</span></span>
+          </div>
+          <div class="row">
+            <span class="rt">UPenn Blockchain Hackathon</span>
+            <span class="pill"><span class="pill-flow"></span><span class="pill-label">2nd place overall</span></span>
+            <span class="pill"><span class="pill-flow"></span><span class="pill-label">Gemini bounty winner</span></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2 · Liquid Gold -->
+      <div class="card s-gold">
+        <div class="card-top">
+          <h3><span class="num">2</span>Liquid Gold</h3>
+          <span class="tag gl">WebGL · CDN</span>
+        </div>
+        <p class="desc">
+          Same shader, warm-tinted to molten gold with a gold bezel that
+          brightens on hover. Reads more “prestige / award”.
+        </p>
+        <div class="ctx">
+          <div class="row">
+            <span class="rt">bu blockchain hackathon – vibe space</span>
+            <span class="pill"><span class="pill-flow"></span><span class="pill-label">1st place</span></span>
+          </div>
+          <div class="row">
+            <span class="rt">IMC Prosperity</span>
+            <span class="pill"><span class="pill-flow"></span><span class="pill-label">#777 of 18,803 (top 4%)</span></span>
+          </div>
+          <div class="row">
+            <span class="rt">UPenn Blockchain Hackathon</span>
+            <span class="pill"><span class="pill-flow"></span><span class="pill-label">2nd place overall</span></span>
+            <span class="pill"><span class="pill-flow"></span><span class="pill-label">Gemini bounty winner</span></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 · Glass / Frosted -->
+      <div class="card s-glass">
+        <div class="card-top">
+          <h3><span class="num">3</span>Glass / Frosted</h3>
+          <span class="tag css">Pure CSS</span>
+        </div>
+        <p class="desc">
+          Translucent frosted glass with a backdrop blur and a thin lit edge.
+          Clean, modern, lets the background show through; brightens on hover.
+        </p>
+        <div class="ctx">
+          <div class="row">
+            <span class="rt">bu blockchain hackathon – vibe space</span>
+            <span class="pill"><span class="pill-label">1st place</span></span>
+          </div>
+          <div class="row">
+            <span class="rt">IMC Prosperity</span>
+            <span class="pill"><span class="pill-label">#777 of 18,803 (top 4%)</span></span>
+          </div>
+          <div class="row">
+            <span class="rt">UPenn Blockchain Hackathon</span>
+            <span class="pill"><span class="pill-label">2nd place overall</span></span>
+            <span class="pill"><span class="pill-label">Gemini bounty winner</span></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4 · Neon Glow -->
+      <div class="card s-neon">
+        <div class="card-top">
+          <h3><span class="num">4</span>Neon Glow</h3>
+          <span class="tag css">Pure CSS</span>
+        </div>
+        <p class="desc">
+          Near-black chip with a glowing cyan edge + text. Hover intensifies the
+          glow. Techy / terminal vibe (suits the trading + dev theme).
+        </p>
+        <div class="ctx">
+          <div class="row">
+            <span class="rt">bu blockchain hackathon – vibe space</span>
+            <span class="pill"><span class="pill-label">1st place</span></span>
+          </div>
+          <div class="row">
+            <span class="rt">IMC Prosperity</span>
+            <span class="pill"><span class="pill-label">#777 of 18,803 (top 4%)</span></span>
+          </div>
+          <div class="row">
+            <span class="rt">UPenn Blockchain Hackathon</span>
+            <span class="pill"><span class="pill-label">2nd place overall</span></span>
+            <span class="pill"><span class="pill-label">Gemini bounty winner</span></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5 · Holographic Shimmer -->
+      <div class="card s-shimmer">
+        <div class="card-top">
+          <h3><span class="num">5</span>Holographic Shimmer</h3>
+          <span class="tag css">Pure CSS</span>
+        </div>
+        <p class="desc">
+          An iridescent gradient that sweeps continuously across the pill (no
+          WebGL). Always “alive”; hover speeds the sweep up. Lighter cousin of
+          the liquid metal.
+        </p>
+        <div class="ctx">
+          <div class="row">
+            <span class="rt">bu blockchain hackathon – vibe space</span>
+            <span class="pill"><span class="pill-label">1st place</span></span>
+          </div>
+          <div class="row">
+            <span class="rt">IMC Prosperity</span>
+            <span class="pill"><span class="pill-label">#777 of 18,803 (top 4%)</span></span>
+          </div>
+          <div class="row">
+            <span class="rt">UPenn Blockchain Hackathon</span>
+            <span class="pill"><span class="pill-label">2nd place overall</span></span>
+            <span class="pill"><span class="pill-label">Gemini bounty winner</span></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6 · Outline / Ghost -->
+      <div class="card s-ghost">
+        <div class="card-top">
+          <h3><span class="num">6</span>Outline / Ghost</h3>
+          <span class="tag css">Pure CSS</span>
+        </div>
+        <p class="desc">
+          Minimal: just a thin outline and label, filling subtly on hover. Quiet
+          and editorial — lets the text do the work. Most restrained option.
+        </p>
+        <div class="ctx">
+          <div class="row">
+            <span class="rt">bu blockchain hackathon – vibe space</span>
+            <span class="pill"><span class="pill-label">1st place</span></span>
+          </div>
+          <div class="row">
+            <span class="rt">IMC Prosperity</span>
+            <span class="pill"><span class="pill-label">#777 of 18,803 (top 4%)</span></span>
+          </div>
+          <div class="row">
+            <span class="rt">UPenn Blockchain Hackathon</span>
+            <span class="pill"><span class="pill-label">2nd place overall</span></span>
+            <span class="pill"><span class="pill-label">Gemini bounty winner</span></span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 7 · Soft Pastel (baseline) -->
+      <div class="card s-pastel">
+        <div class="card-top">
+          <h3><span class="num">7</span>Soft Pastel <span class="num" style="margin: 0">(original)</span></h3>
+          <span class="tag css">Pure CSS</span>
+        </div>
+        <p class="desc">
+          Your original color-coded chips for reference: teal = placement, blue =
+          ranking, purple = recognition. Calm and readable; no motion.
+        </p>
+        <div class="ctx">
+          <div class="row">
+            <span class="rt">bu blockchain hackathon – vibe space</span>
+            <span class="pill c-teal"><span class="pill-label">1st place</span></span>
+          </div>
+          <div class="row">
+            <span class="rt">IMC Prosperity</span>
+            <span class="pill c-blue"><span class="pill-label">#777 of 18,803 (top 4%)</span></span>
+          </div>
+          <div class="row">
+            <span class="rt">UPenn Blockchain Hackathon</span>
+            <span class="pill c-teal"><span class="pill-label">2nd place overall</span></span>
+            <span class="pill c-purple"><span class="pill-label">Gemini bounty winner</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="foot">
+      Mockup only — nothing here touches your live site. The two WebGL cards mount
+      <code>@paper-design/shaders@0.0.76</code> (pinned). Once you pick, I'll apply
+      it to <code>index.html</code> / <code>styles.css</code> for real.
+    </div>
+
+    <script type="module">
+      import {
+        liquidMetalFragmentShader,
+        ShaderMount,
+      } from "https://esm.sh/@paper-design/shaders@0.0.76";
+
+      const reduceMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
+
+      const base = {
+        u_repetition: 1.5,
+        u_softness: 0.5,
+        u_distortion: 0,
+        u_contour: 0,
+        u_angle: 100,
+        u_scale: 1.0,
+        u_shape: 0,
+        u_fit: 2,
+        u_offsetX: 0,
+        u_offsetY: 0,
+      };
+
+      const configs = [
+        { sel: ".s-chrome .pill-flow", uniforms: { ...base, u_shiftRed: 0.3, u_shiftBlue: 0.3 } },
+        { sel: ".s-gold .pill-flow", uniforms: { ...base, u_shiftRed: 0.35, u_shiftBlue: 0.12 } },
+      ];
+
+      if (!reduceMotion) {
+        for (const c of configs) {
+          document.querySelectorAll(c.sel).forEach((el) => {
+            new ShaderMount(el, liquidMetalFragmentShader, c.uniforms, undefined, 0.6);
+          });
+        }
+      }
+    </script>
+  </body>
+</html>
