@@ -5,33 +5,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Justin Li</title>
     <style>
+      :root {
+        --bg: #ffffff; --text: #000000; --muted: #8a8a8a; --label: #9a9a9a;
+        --link: #000000; --link-ul: #000000; --link-hover: #555555;
+        --logo-bg: #ffffff; --logo-border: #ececec; --brand: #000000; --footer: #555555;
+        --badge-blue-bg: #eef3ff; --badge-blue-fg: #2563eb;
+        --badge-teal-bg: #e6f4f1; --badge-teal-fg: #0f766e;
+        --badge-purple-bg: #f3e8ff; --badge-purple-fg: #7c3aed;
+        --toggle-border: #e2e2e2; --toggle-fg: #333333;
+      }
+      html[data-theme="dark"] {
+        --bg: #0f0f0f; --text: #e8e8e8; --muted: #6f6f6f; --label: #6f6f6f;
+        --link: #e8e8e8; --link-ul: #555555; --link-hover: #ffffff;
+        --logo-bg: #ffffff; --logo-border: transparent; --brand: #fafafa; --footer: #888888;
+        --badge-blue-bg: rgba(37,99,235,0.18); --badge-blue-fg: #7aa6ff;
+        --badge-teal-bg: rgba(15,118,110,0.22); --badge-teal-fg: #5ed3c0;
+        --badge-purple-bg: rgba(124,58,237,0.22); --badge-purple-fg: #c4a3ff;
+        --toggle-border: #2a2a2a; --toggle-fg: #cccccc;
+      }
       * { margin: 0; padding: 0; box-sizing: border-box; }
       body {
         font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
           "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-        font-weight: 400;
-        font-size: 18px;
-        line-height: 28px;
-        color: #e8e8e8;
-        background: #0f0f0f;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
+        font-weight: 400; font-size: 18px; line-height: 28px;
+        color: var(--text); background: var(--bg);
+        transition: background-color 0.2s ease, color 0.2s ease;
+        -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
       }
       .page { max-width: 1040px; margin: 0 auto; padding: 56px 32px 96px; }
       .brand {
-        text-align: center;
-        font-size: 56px;
-        font-weight: 800;
-        letter-spacing: -1px;
-        color: #fafafa;
-        margin-bottom: 76px;
+        text-align: center; font-size: 56px; font-weight: 800;
+        letter-spacing: -1px; color: var(--brand); margin-bottom: 76px;
       }
       .row { display: flex; align-items: flex-start; gap: 40px; margin-bottom: 56px; }
-      .label { width: 150px; flex: none; color: #6f6f6f; padding-top: 1px; }
+      .label { width: 150px; flex: none; color: var(--label); padding-top: 1px; }
       .body { flex: 1; min-width: 0; }
-      a { color: #e8e8e8; text-decoration: underline; text-decoration-color: #555; text-underline-offset: 3px; text-decoration-thickness: 1px; }
-      a:hover { color: #fff; text-decoration-color: #999; }
-      .muted { color: #6f6f6f; }
+      a {
+        color: var(--link); text-decoration: underline;
+        text-decoration-color: var(--link-ul); text-underline-offset: 3px; text-decoration-thickness: 1px;
+      }
+      a:hover { color: var(--link-hover); }
+      .muted { color: var(--muted); }
 
       .about p { margin-bottom: 20px; }
       .about p:last-child { margin-bottom: 0; }
@@ -39,35 +53,59 @@
       .entry { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 28px; }
       .entry:last-child { margin-bottom: 0; }
       .entry > img {
-        width: 44px; height: 44px; border-radius: 10px;
-        object-fit: contain; background: #fff; flex: none;
+        width: 44px; height: 44px; border-radius: 10px; object-fit: contain;
+        background: var(--logo-bg); border: 1px solid var(--logo-border); flex: none;
       }
       .entry .info { flex: 1; min-width: 0; }
-      .entry .title { color: #e8e8e8; }
-      .entry .desc { color: #6f6f6f; }
-      .entry .date { color: #6f6f6f; white-space: nowrap; padding-left: 24px; text-align: right; }
+      .entry .desc { color: var(--muted); }
+      .entry .date { color: var(--label); white-space: nowrap; padding-left: 24px; text-align: right; }
 
       .list .item { margin-bottom: 16px; }
       .list .item:last-child { margin-bottom: 0; }
-      .list .name { color: #e8e8e8; }
-      .list .sub { color: #6f6f6f; }
+      .list .sub { color: var(--muted); }
 
       .badge { display: inline-block; font-size: 14px; line-height: 22px; padding: 0 10px; border-radius: 20px; margin-left: 6px; vertical-align: middle; }
-      .b-blue { background: rgba(37,99,235,0.18); color: #7aa6ff; }
-      .b-teal { background: rgba(15,118,110,0.22); color: #5ed3c0; }
-      .b-purple { background: rgba(124,58,237,0.22); color: #c4a3ff; }
+      .b-blue { background: var(--badge-blue-bg); color: var(--badge-blue-fg); }
+      .b-teal { background: var(--badge-teal-bg); color: var(--badge-teal-fg); }
+      .b-purple { background: var(--badge-purple-bg); color: var(--badge-purple-fg); }
 
-      .footer a { margin-right: 22px; color: #888; }
+      .footer a { margin-right: 22px; color: var(--footer); }
+
+      .theme-toggle {
+        position: fixed; top: 20px; right: 24px;
+        width: 38px; height: 38px; border-radius: 50%;
+        border: 1px solid var(--toggle-border); background: transparent; color: var(--toggle-fg);
+        display: flex; align-items: center; justify-content: center; cursor: pointer;
+        transition: border-color 0.2s ease, color 0.2s ease;
+      }
+      .theme-toggle:hover { color: var(--text); }
+      .theme-toggle svg { width: 18px; height: 18px; }
+      .icon-sun { display: none; }
+      html[data-theme="dark"] .icon-sun { display: block; }
+      html[data-theme="dark"] .icon-moon { display: none; }
 
       @media (max-width: 640px) {
         .brand { font-size: 40px; margin-bottom: 48px; }
         .row { flex-direction: column; gap: 10px; margin-bottom: 40px; }
         .label { width: auto; }
         .entry .date { padding-left: 0; }
+        .theme-toggle { top: 14px; right: 14px; }
       }
     </style>
+    <script>
+      (function () {
+        var stored = localStorage.getItem("theme");
+        var initial = stored || (window.matchMedia("(prefers-color-scheme: light)").matches ? "light" : "dark");
+        document.documentElement.setAttribute("data-theme", initial);
+      })();
+    </script>
   </head>
   <body>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle light/dark theme">
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+    </button>
+
     <div class="page">
       <div class="brand">justin li</div>
 
@@ -164,5 +202,14 @@
         </div>
       </div>
     </div>
+
+    <script>
+      document.getElementById("themeToggle").addEventListener("click", function () {
+        var root = document.documentElement;
+        var next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+        root.setAttribute("data-theme", next);
+        localStorage.setItem("theme", next);
+      });
+    </script>
   </body>
 </html>
