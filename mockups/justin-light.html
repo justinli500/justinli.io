@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Justin Li</title>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      body {
+        font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+          "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 28px;
+        color: #000;
+        background: #fff;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      .page { max-width: 1040px; margin: 0 auto; padding: 56px 32px 96px; }
+      .brand {
+        text-align: center;
+        font-size: 56px;
+        font-weight: 800;
+        letter-spacing: -1px;
+        margin-bottom: 76px;
+      }
+      .row { display: flex; align-items: flex-start; gap: 40px; margin-bottom: 56px; }
+      .label { width: 150px; flex: none; color: #9a9a9a; padding-top: 1px; }
+      .body { flex: 1; min-width: 0; }
+      a { color: #000; text-decoration: underline; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+      a:hover { color: #555; }
+      .muted { color: #8a8a8a; }
+
+      .about p { margin-bottom: 20px; }
+      .about p:last-child { margin-bottom: 0; }
+
+      .entry { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 28px; }
+      .entry:last-child { margin-bottom: 0; }
+      .entry > img {
+        width: 44px; height: 44px; border-radius: 10px;
+        object-fit: contain; background: #fff; border: 1px solid #ececec; flex: none;
+      }
+      .entry .info { flex: 1; min-width: 0; }
+      .entry .title { color: #000; }
+      .entry .desc { color: #8a8a8a; }
+      .entry .date { color: #9a9a9a; white-space: nowrap; padding-left: 24px; text-align: right; }
+
+      .list .item { margin-bottom: 16px; }
+      .list .item:last-child { margin-bottom: 0; }
+      .list .name { color: #000; }
+      .list .sub { color: #8a8a8a; }
+
+      .badge { display: inline-block; font-size: 14px; line-height: 22px; padding: 0 10px; border-radius: 20px; margin-left: 6px; vertical-align: middle; }
+      .b-blue { background: #eef3ff; color: #2563eb; }
+      .b-teal { background: #e6f4f1; color: #0f766e; }
+      .b-purple { background: #f3e8ff; color: #7c3aed; }
+
+      .footer a { margin-right: 22px; color: #555; }
+
+      @media (max-width: 640px) {
+        .brand { font-size: 40px; margin-bottom: 48px; }
+        .row { flex-direction: column; gap: 10px; margin-bottom: 40px; }
+        .label { width: auto; }
+        .entry .date { padding-left: 0; }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <div class="brand">justin li</div>
+
+      <div class="row">
+        <div class="label">about</div>
+        <div class="body about">
+          <p>cs + math @ <a href="https://www.bu.edu" target="_blank">boston university</a> — building low-latency trading systems.</p>
+          <p>president of <a href="https://www.instagram.com/bucpc/" target="_blank">bu competitive programming</a>, quant strategy at bu blockchain.</p>
+          <p>always shipping side quests.</p>
+          <p>reach out — <a href="mailto:lijustin500@gmail.com">lijustin500@gmail.com</a> <span class="muted">(open to quant dev roles)</span></p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="label">now</div>
+        <div class="body">
+          <div class="entry">
+            <img src="../assets/University/boston-university-seeklogo.png" alt="Boston University" />
+            <div class="info"><div class="title">cs + math</div><div class="desc">boston university</div></div>
+            <div class="date">2023 — present</div>
+          </div>
+          <div class="entry">
+            <img src="../assets/BU_CPC.jpg" alt="BU CPC" />
+            <div class="info"><div class="title">president</div><div class="desc">bu competitive programming club</div></div>
+            <div class="date">2025 — present</div>
+          </div>
+          <div class="entry">
+            <img src="../assets/bu_blockchain_logo.jpeg" alt="BU Blockchain" />
+            <div class="info"><div class="title">director of quantitative strategy</div><div class="desc">bu blockchain</div></div>
+            <div class="date">2024 — present</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="label">previously</div>
+        <div class="body">
+          <div class="entry">
+            <img src="../assets/Experiences/UmiUni.jpeg" alt="UmiUni" />
+            <div class="info"><div class="title">quantitative data engineer</div><div class="desc">umiuni</div></div>
+            <div class="date">2024</div>
+          </div>
+          <div class="entry">
+            <img src="../assets/Experiences/CITIC.png" alt="CITIC Securities" />
+            <div class="info"><div class="title">swe intern</div><div class="desc">citic securities</div></div>
+            <div class="date">2023</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="label">projects</div>
+        <div class="body list">
+          <div class="item"><span class="name">exec sim</span> <span class="sub">— deterministic c++ limit-order-book matching engine with live-vs-sim fill validation</span></div>
+          <div class="item"><span class="name">dex market maker</span> <span class="sub">— low-latency market-making engine for an on-chain perp dex</span></div>
+          <div class="item"><span class="name">binary options maker</span> <span class="sub">— order-book reconstruction with N(d2) digital-option pricing</span></div>
+          <div class="item"><span class="name">booklens</span> <span class="sub">— deep-learning model of order-book dynamics</span></div>
+          <div class="item"><a href="https://github.com/justinli500/alpha-lens" target="_blank">alpha lens</a> <span class="sub">— full-stack polymarket trader identifier tool</span></div>
+          <div class="item"><a href="https://github.com/justinli500/slide-snap" target="_blank">slide snap</a> <span class="sub">— macos menu-bar lecture-slide capture (apple vision)</span></div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="label">open source</div>
+        <div class="body">
+          <div class="entry">
+            <img src="../assets/OpenSource/simdjson.png" alt="simdjson" />
+            <div class="info"><div class="title"><a href="https://github.com/simdjson/simdjson/pull/2678" target="_blank">std::ranges support for the on-demand api</a></div><div class="desc">simdjson</div></div>
+          </div>
+          <div class="entry">
+            <img src="../assets/OpenSource/quantlib.png" alt="QuantLib" />
+            <div class="info"><div class="title"><a href="https://github.com/lballabio/QuantLib/pull/2528" target="_blank">asymmetric payment frequencies for cross-currency swaps</a></div><div class="desc">quantlib</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="label">competitions</div>
+        <div class="body list">
+          <div class="item"><a href="https://x.com/justinli500/status/2061097382776111121" target="_blank">imc prosperity</a> <span class="sub">— global algorithmic trading competition</span><span class="badge b-blue">#777 / 18,803</span></div>
+          <div class="item"><a href="https://www.optimizationarena.com/user/justinli500" target="_blank">amm fee optimization</a> <span class="sub">— solidity fee strategy for a simulated constant-product amm</span><span class="badge b-blue">38 / 662</span></div>
+          <div class="item"><a href="https://x.com/justinli500/status/2047731042795340271" target="_blank">upenn blockchain hackathon</a> <span class="sub">— pollux, a prediction-market terminal</span><span class="badge b-teal">2nd overall</span><span class="badge b-purple">gemini bounty</span></div>
+          <div class="item"><span class="name">bu blockchain hackathon</span> <span class="sub">— vibe space</span><span class="badge b-teal">1st place</span></div>
+          <div class="item"><span class="name">easyA x stellar</span> <span class="sub">— spellbound</span><span class="badge b-purple">finalist</span></div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="label"></div>
+        <div class="body footer">
+          <a href="https://github.com/justinli500" target="_blank">github</a>
+          <a href="https://x.com/justinli500" target="_blank">x</a>
+          <a href="https://www.linkedin.com/in/justinli500" target="_blank">linkedin</a>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
