@@ -238,6 +238,21 @@ body {
     color: rgb(245, 245, 244);
 }
 
+/* List links with a small inline logo (projects, hackathons) */
+.simple-link.has-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.project-logo {
+    width: 18px;
+    height: 18px;
+    object-fit: contain;
+    flex-shrink: 0;
+    border-radius: 50%;
+}
+
 /* Hackathon links with pill badges */
 .hackathon-link {
     display: flex;
